@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingVertical="100dp"
+    android:id="@+id/linearLayout"
+    android:background="#444444"
+
+
+
+    >
+
+    <LinearLayout
+        android:layout_width="380dp"
+        android:layout_height="578dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:gravity="center"
+            android:text="PANEL"
+            android:textColor="#5478E6"
+            android:textSize="36sp"
+            android:textStyle="bold" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="30dp">
+
+                <Button
+                    android:id="@+id/buttonManage1"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="131dp"
+                    android:layout_height="wrap_content"
+                    android:text="manage" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="133dp"
+                    android:layout_height="31dp"
+                    android:gravity="center_horizontal"
+                    android:text="School" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="30dp">
+
+                <Button
+                    android:id="@+id/buttonManage2"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="131dp"
+                    android:layout_height="wrap_content"
+                    android:text="manage" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="133dp"
+                    android:layout_height="31dp"
+                    android:gravity="center_horizontal"
+                    android:text="Instructor" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="@+id/buttonManage3"
+                android:layout_height="match_parent"
+                android:paddingStart="30dp">
+
+                <Button
+                    android:id="@+id/button63"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="131dp"
+                    android:layout_height="wrap_content"
+                    android:text="manage" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="133dp"
+                    android:layout_height="31dp"
+                    android:gravity="center_horizontal"
+                    android:text="Student" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </TableLayout>
+
+    </LinearLayout>
+</LinearLayout>

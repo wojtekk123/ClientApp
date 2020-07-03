@@ -57,6 +57,8 @@ class MainActivity : AppCompatActivity() {
                         if (response.code() == 200) {
                             Toast.makeText(this@MainActivity, "Login success!", Toast.LENGTH_SHORT).show()
                             TokenAccess.token = response.body()?.token
+                            startActivity(Intent(this@MainActivity,PanelActivity::class.java))
+
                         } else {
                             Toast.makeText(this@MainActivity, "Login failed!", Toast.LENGTH_SHORT).show()
                         }
