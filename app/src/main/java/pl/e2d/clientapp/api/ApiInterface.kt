@@ -3,11 +3,9 @@ package pl.e2d.clientapp.api
 import pl.e2d.clientapp.model.Response
 import pl.e2d.clientapp.model.SignInBody
 import pl.e2d.clientapp.model.SingUpBody
+import pl.e2d.clientapp.model.masterDataEntity.Student
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.Header
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.http.*
 
 
 interface ApiInterface {
@@ -21,5 +19,8 @@ interface ApiInterface {
     @POST("/signup")
     fun signUp (@Body registrationData: SingUpBody, @Header ("Authorization")  token: String?): Call<SingUpBody>
 
+    @Headers("Content-Type:application/json")
+    @GET("/student/all")
+    fun getAllStudent(@Header ("Authorization")  token: String?): Call<List<Student>>
 
 }

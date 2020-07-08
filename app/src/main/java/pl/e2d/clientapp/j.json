@@ -1,0 +1,15 @@
+[
+  {
+    "endEducation": "2019-10-23T22:00:00.000+0000",
+    "id": 1,
+    "schoolId": 1,
+    "startEducation": "2013-10-23T22:00:00.000+0000",
+    "user": {
+      "email": "mbaadf@eo2.pl",
+      "firstName": "Tomek",
+      "id": 2,
+      "phoneNumber": "+12 123123323",
+      "secondName": "Nowak"
+    }
+  }
+]

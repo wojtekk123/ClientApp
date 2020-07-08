@@ -13,13 +13,14 @@ import pl.e2d.clientapp.singletons.ServiceBuilder
 import pl.e2d.clientapp.singletons.TokenAccess
 import pl.e2d.clientapp.model.Response
 import pl.e2d.clientapp.model.SignInBody
+import pl.e2d.clientapp.model.masterDataEntity.Student
 import retrofit2.Call
 import retrofit2.Callback
 
 
-
 class MainActivity : AppCompatActivity() {
 
+    private val BASE_URL:String = "http://192.168.1.150:8081"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             }
 
 
-            val request = ServiceBuilder.getRetrofitInstance().create(ApiInterface::class.java)
+            val request = ServiceBuilder.getRetrofitInstance(BASE_URL).create(ApiInterface::class.java)
              request.signIn(SignInBody(login,password)).enqueue(object: Callback<Response>{
                     override fun onFailure(call: Call<Response>, t: Throwable) {
                         Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()

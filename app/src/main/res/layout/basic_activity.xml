@@ -40,7 +40,7 @@
                 android:paddingStart="30dp">
 
                 <Button
-                    android:id="@+id/buttonManage1"
+                    android:id="@+id/manageSchool"
                     style="@style/Widget.AppCompat.Button"
                     android:layout_width="131dp"
                     android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
                 android:paddingStart="30dp">
 
                 <Button
-                    android:id="@+id/buttonManage2"
+                    android:id="@+id/manageInstructor"
                     style="@style/Widget.AppCompat.Button"
                     android:layout_width="131dp"
                     android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
                 android:paddingStart="30dp">
 
                 <Button
-                    android:id="@+id/button63"
+                    android:id="@+id/manageStudent"
                     style="@style/Widget.AppCompat.Button"
                     android:layout_width="131dp"
                     android:layout_height="wrap_content"
