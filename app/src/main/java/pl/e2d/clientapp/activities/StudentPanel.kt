@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.popup_window.*
 import kotlinx.android.synthetic.main.studnet_panel.*
 import pl.e2d.clientapp.R
 import pl.e2d.clientapp.adapter.ListAdapter
+import pl.e2d.clientapp.adapter.ListAdapterPopUp
 import pl.e2d.clientapp.api.ApiInterface
 import pl.e2d.clientapp.model.masterDataEntity.Student
 import pl.e2d.clientapp.parser.ParserMaster
@@ -80,6 +81,8 @@ class StudentPanel : AppCompatActivity() {
             val view = layoutInflater.inflate(R.layout.popup_window, null)
             val button = view.findViewById<Button>(R.id.pp_change)
             popupWindow.contentView = view
+
+            ListAdapterPopUp().getView(this@StudentPanel, listOfStudents.get(position))
 
 
             button.setOnClickListener {

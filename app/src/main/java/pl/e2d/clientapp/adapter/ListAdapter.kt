@@ -9,17 +9,18 @@ import android.widget.TextView
 import pl.e2d.clientapp.R
 import pl.e2d.clientapp.model.masterDataEntity.Student
 
- class ListAdapter (val context: Context, val list:ArrayList<Student>):BaseAdapter() {
+class ListAdapter(val context: Context, val list: ArrayList<Student>) : BaseAdapter() {
     override fun getView(position: Int, currentView: View?, parent: ViewGroup?): View {
 
-        val view:View = LayoutInflater.from(context).inflate(R.layout.adapter_vie_layout, parent,false)
+        val view: View =
+            LayoutInflater.from(context).inflate(R.layout.adapter_vie_layout, parent, false)
         val id = view.findViewById<TextView>(R.id.textView_id)
         val name = view.findViewById<TextView>(R.id.textView_name)
         val secondName = view.findViewById<TextView>(R.id.textView_secondName)
 
         id.text = list[position].id.toString()
         name.text = list[position].user.firstName
-        secondName.text = list [position].user.secondName
+        secondName.text = list[position].user.secondName
         return view
     }
 
@@ -36,25 +37,25 @@ import pl.e2d.clientapp.model.masterDataEntity.Student
     }
 }
 
-//class ListAdapterPopUp  {
-//     fun getView( student:Student,  context: Context) {
-//
-//        val view:View = LayoutInflater.from(context)
-//        val firstName = view.findViewById<TextView>(R.id.pp_firstName)
-//        val secondName = view.findViewById<TextView>(R.id.pp_secondName)
-//        val email = view.findViewById<TextView>(R.id.pp_email)
-//        val phone = view.findViewById<TextView>(R.id.pp_phone)
-//        val schoolId = view.findViewById<TextView>(R.id.pp_schoolId)
-//        val startDate = view.findViewById<TextView>(R.id.pp_startDate)
-//        val endDate = view.findViewById<TextView>(R.id.pp_endDate)
-//
-//        firstName.text = list [position].user.firstName
-//        secondName.text = list [position].user.secondName
-//        email.text = list [position].user.email
-//        phone.text = list [position].user.phoneNumber
-//        schoolId.text = list [position].schoolId.toString()
-//        startDate.text = list [position].startEducation
-//        endDate.text = list [position].endEducation
-//
-//    }
+class ListAdapterPopUp {
+    fun getView(context: Context, student: Student) {
+
+        val view: View = LayoutInflater.from(context).inflate(R.layout.popup_window, null, false)
+        val firstName = view.findViewById<TextView>(R.id.pp_firstName)
+        val secondName = view.findViewById<TextView>(R.id.pp_secondName)
+        val email = view.findViewById<TextView>(R.id.pp_email)
+        val phone = view.findViewById<TextView>(R.id.pp_phone)
+        val schoolId = view.findViewById<TextView>(R.id.pp_schoolId)
+        val startDate = view.findViewById<TextView>(R.id.pp_startDate)
+        val endDate = view.findViewById<TextView>(R.id.pp_endDate)
+
+        firstName.text = student.user.firstName
+        secondName.text = student.user.secondName
+        email.text = student.user.email
+        phone.text = student.user.phoneNumber
+        schoolId.text = student.schoolId.toString()
+        startDate.text = student.startEducation
+        endDate.text = student.endEducation
+
+    }
 }
