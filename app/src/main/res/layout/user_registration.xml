@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:paddingVertical="100dp"
     android:id="@+id/linearLayout"
-    android:background="#444444" >
+     >
 
     <EditText
         android:id="@+id/et_user_name"

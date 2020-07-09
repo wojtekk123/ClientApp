@@ -6,9 +6,6 @@
     android:layout_height="match_parent"
     android:paddingVertical="100dp"
     android:id="@+id/linearLayout"
-    android:background="#444444"
-
-
 
     >
 
@@ -31,8 +28,9 @@
             android:textStyle="bold" />
 
         <TableLayout
-            android:layout_width="match_parent"
+            android:layout_width="410dp"
             android:layout_height="match_parent">
+
 
             <TableRow
                 android:layout_width="match_parent"

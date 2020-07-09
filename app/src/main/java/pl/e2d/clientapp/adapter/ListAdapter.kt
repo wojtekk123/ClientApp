@@ -13,19 +13,13 @@ import pl.e2d.clientapp.model.masterDataEntity.Student
     override fun getView(position: Int, currentView: View?, parent: ViewGroup?): View {
 
         val view:View = LayoutInflater.from(context).inflate(R.layout.adapter_vie_layout, parent,false)
-
-        val id = view.findViewById<TextView>(R.id.id_textView)
-        val user = view.findViewById<TextView>(R.id.user_textView)
-        val schoolId = view.findViewById<TextView>(R.id.schoolId_textView)
-        val startDate = view.findViewById<TextView>(R.id.startDate_textView)
-        val endDate = view.findViewById<TextView>(R.id.stopDate_textView)
+        val id = view.findViewById<TextView>(R.id.textView_id)
+        val name = view.findViewById<TextView>(R.id.textView_name)
+        val secondName = view.findViewById<TextView>(R.id.textView_secondName)
 
         id.text = list[position].id.toString()
-        user.text = list[position].user.firstName
-        schoolId.text = list [position].longId.toString()
-        startDate.text = list [position].startEducation.toString()
-        endDate.text = list [position].startEducation.toString()
-
+        name.text = list[position].user.firstName
+        secondName.text = list [position].user.secondName
         return view
     }
 
@@ -40,4 +34,27 @@ import pl.e2d.clientapp.model.masterDataEntity.Student
     override fun getCount(): Int {
         return list.size
     }
+}
+
+//class ListAdapterPopUp  {
+//     fun getView( student:Student,  context: Context) {
+//
+//        val view:View = LayoutInflater.from(context)
+//        val firstName = view.findViewById<TextView>(R.id.pp_firstName)
+//        val secondName = view.findViewById<TextView>(R.id.pp_secondName)
+//        val email = view.findViewById<TextView>(R.id.pp_email)
+//        val phone = view.findViewById<TextView>(R.id.pp_phone)
+//        val schoolId = view.findViewById<TextView>(R.id.pp_schoolId)
+//        val startDate = view.findViewById<TextView>(R.id.pp_startDate)
+//        val endDate = view.findViewById<TextView>(R.id.pp_endDate)
+//
+//        firstName.text = list [position].user.firstName
+//        secondName.text = list [position].user.secondName
+//        email.text = list [position].user.email
+//        phone.text = list [position].user.phoneNumber
+//        schoolId.text = list [position].schoolId.toString()
+//        startDate.text = list [position].startEducation
+//        endDate.text = list [position].endEducation
+//
+//    }
 }
