@@ -13,7 +13,6 @@ import pl.e2d.clientapp.singletons.ServiceBuilder
 import pl.e2d.clientapp.singletons.TokenAccess
 import pl.e2d.clientapp.model.Response
 import pl.e2d.clientapp.model.SignInBody
-import pl.e2d.clientapp.model.masterDataEntity.Student
 import retrofit2.Call
 import retrofit2.Callback
 
@@ -54,7 +53,7 @@ class MainActivity : AppCompatActivity() {
                         Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()
                     }
 
-                    override fun onResponse(call: Call<Response>,response: retrofit2.Response<Response>) {
+                    override fun onResponse(call: Call<Response>, response: retrofit2.Response<Response>) {
                         if (response.code() == 200) {
                             Toast.makeText(this@MainActivity, "Login success!", Toast.LENGTH_SHORT).show()
                             TokenAccess.token = response.body()?.token
@@ -65,6 +64,9 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
              })
+
+
+
         }
     }
 }

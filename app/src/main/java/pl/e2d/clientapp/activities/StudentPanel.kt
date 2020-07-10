@@ -43,6 +43,7 @@ class StudentPanel : AppCompatActivity() {
         }
 
         getAllButton.setOnClickListener {
+
             if (TokenAccess.getMyStringData().equals(null)) {
                 Toast.makeText(this@StudentPanel, "Lack of token!", Toast.LENGTH_SHORT)
                     .show()
@@ -65,7 +66,6 @@ class StudentPanel : AppCompatActivity() {
                                 val adapter = ListAdapter(this@StudentPanel, listOfStudents)
                                 listView.adapter = adapter
 
-
                             } else {
                                 Toast.makeText(this@StudentPanel,"Access denied", Toast.LENGTH_SHORT).show()
                             }
@@ -79,18 +79,28 @@ class StudentPanel : AppCompatActivity() {
 
             val popupWindow = PopupWindow(this)
             val view = layoutInflater.inflate(R.layout.popup_window, null)
+            val context = view.context
             val button = view.findViewById<Button>(R.id.pp_change)
+            val listView = view.findViewById<ListView>(R.id.popup_listView)
+
             popupWindow.contentView = view
-
-            ListAdapterPopUp().getView(this@StudentPanel, listOfStudents.get(position))
-
-
-            button.setOnClickListener {
+            
+            val studentPopUp = ParserMaster().jsonStudentPopUp(listOfStudents[position])
+            val adapterPopUp = ListAdapterPopUp(context, studentPopUp)
+            listView.adapter =  adapterPopUp
+            
+                button.setOnClickListener {
                 popupWindow.dismiss()
             }
 
             popupWindow.showAsDropDown(getAllButton)
 
+            listView.setOnItemClickListener { parent, view, position, id ->
+
+                val itemListView = view.findViewById<TextView>(R.id.textView_popUp)
+                itemListView
+
+            }
         }
     }
 }

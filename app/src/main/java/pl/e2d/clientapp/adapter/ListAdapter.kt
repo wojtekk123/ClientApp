@@ -9,11 +9,10 @@ import android.widget.TextView
 import pl.e2d.clientapp.R
 import pl.e2d.clientapp.model.masterDataEntity.Student
 
-class ListAdapter(val context: Context, val list: ArrayList<Student>) : BaseAdapter() {
+class ListAdapter(val context: Context, val list: List<Student>) : BaseAdapter() {
     override fun getView(position: Int, currentView: View?, parent: ViewGroup?): View {
 
-        val view: View =
-            LayoutInflater.from(context).inflate(R.layout.adapter_vie_layout, parent, false)
+        val view: View = LayoutInflater.from(context).inflate(R.layout.adapter_vie_layout, parent, false)
         val id = view.findViewById<TextView>(R.id.textView_id)
         val name = view.findViewById<TextView>(R.id.textView_name)
         val secondName = view.findViewById<TextView>(R.id.textView_secondName)
@@ -37,25 +36,26 @@ class ListAdapter(val context: Context, val list: ArrayList<Student>) : BaseAdap
     }
 }
 
-class ListAdapterPopUp {
-    fun getView(context: Context, student: Student) {
+class ListAdapterPopUp (val context: Context, val list:List<String>) :BaseAdapter() {
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        val view: View = LayoutInflater.from(context).inflate(R.layout.adapter_vie_popup, parent, false)
+        val text = view.findViewById<TextView>(R.id.textView_popUp)
+        text.text = list[position]
+        return view
 
-        val view: View = LayoutInflater.from(context).inflate(R.layout.popup_window, null, false)
-        val firstName = view.findViewById<TextView>(R.id.pp_firstName)
-        val secondName = view.findViewById<TextView>(R.id.pp_secondName)
-        val email = view.findViewById<TextView>(R.id.pp_email)
-        val phone = view.findViewById<TextView>(R.id.pp_phone)
-        val schoolId = view.findViewById<TextView>(R.id.pp_schoolId)
-        val startDate = view.findViewById<TextView>(R.id.pp_startDate)
-        val endDate = view.findViewById<TextView>(R.id.pp_endDate)
-
-        firstName.text = student.user.firstName
-        secondName.text = student.user.secondName
-        email.text = student.user.email
-        phone.text = student.user.phoneNumber
-        schoolId.text = student.schoolId.toString()
-        startDate.text = student.startEducation
-        endDate.text = student.endEducation
 
     }
+
+    override fun getItem(position: Int): Any {
+        return position
+    }
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
+    override fun getCount(): Int {
+        return list.size
+    }
+
 }
