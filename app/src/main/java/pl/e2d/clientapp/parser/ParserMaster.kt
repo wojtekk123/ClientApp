@@ -15,7 +15,7 @@ class ParserMaster {
             val jsonObject = jsonArray.getJSONObject(i)
             list.add(
                 Student(
-                    i.toLong(),
+                    jsonObject.getLong("id"),
                     User(
                         jsonObject.getJSONObject("user").getLong("id"),
                         jsonObject.getJSONObject("user").getString("firstName"),

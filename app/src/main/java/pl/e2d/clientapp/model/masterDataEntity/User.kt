@@ -3,9 +3,9 @@ package pl.e2d.clientapp.model.masterDataEntity
 import com.google.gson.annotations.SerializedName
 import kotlin.Long
 
-data class User(@SerializedName("id") val id: Long,
-                @SerializedName("firstName") val firstName: String,
-                @SerializedName("secondName") val secondName: String,
-                @SerializedName("email") val email: String,
-                @SerializedName("phoneNumber") val phoneNumber: String
+data class User(@SerializedName("id") var id: Long,
+                @SerializedName("firstName") var firstName: String,
+                @SerializedName("secondName") var secondName: String,
+                @SerializedName("email") var email: String,
+                @SerializedName("phoneNumber") var phoneNumber: String
 )

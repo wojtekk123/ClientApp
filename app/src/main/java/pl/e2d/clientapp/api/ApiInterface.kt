@@ -19,8 +19,5 @@ interface ApiInterface {
     @POST("/signup")
     fun signUp (@Body registrationData: SingUpBody, @Header ("Authorization")  token: String?): Call<SingUpBody>
 
-    @Headers("Content-Type:application/json")
-    @GET("/student/all")
-    fun getAllStudent(@Header ("Authorization")  token: String?): Call<List<Student>>
 
 }

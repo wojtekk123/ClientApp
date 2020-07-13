@@ -12,12 +12,13 @@ import pl.e2d.clientapp.model.masterDataEntity.Student
 class ListAdapter(val context: Context, val list: List<Student>) : BaseAdapter() {
     override fun getView(position: Int, currentView: View?, parent: ViewGroup?): View {
 
-        val view: View = LayoutInflater.from(context).inflate(R.layout.adapter_vie_layout, parent, false)
+        val view: View =
+            LayoutInflater.from(context).inflate(R.layout.adapter_vie_layout, parent, false)
         val id = view.findViewById<TextView>(R.id.textView_id)
         val name = view.findViewById<TextView>(R.id.textView_name)
         val secondName = view.findViewById<TextView>(R.id.textView_secondName)
 
-        id.text = list[position].id.toString()
+        id.text = position.toString()
         name.text = list[position].user.firstName
         secondName.text = list[position].user.secondName
         return view
@@ -36,14 +37,13 @@ class ListAdapter(val context: Context, val list: List<Student>) : BaseAdapter()
     }
 }
 
-class ListAdapterPopUp (val context: Context, val list:List<String>) :BaseAdapter() {
+class ListAdapterPopUp(val context: Context, val list: List<String>) : BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val view: View = LayoutInflater.from(context).inflate(R.layout.adapter_vie_popup, parent, false)
+        val view: View =
+            LayoutInflater.from(context).inflate(R.layout.adapter_vie_popup, parent, false)
         val text = view.findViewById<TextView>(R.id.textView_popUp)
         text.text = list[position]
         return view
-
-
     }
 
     override fun getItem(position: Int): Any {
