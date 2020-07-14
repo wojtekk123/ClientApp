@@ -37,12 +37,33 @@ class ListAdapter(val context: Context, val list: List<Student>) : BaseAdapter()
     }
 }
 
-class ListAdapterPopUp(val context: Context, val list: List<String>) : BaseAdapter() {
+class AdapterPopUpList(val context: Context, val list: List<String>) : BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val view: View =
-            LayoutInflater.from(context).inflate(R.layout.adapter_vie_popup, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.adapter_vie_popup_list, parent, false)
         val text = view.findViewById<TextView>(R.id.textView_popUp)
         text.text = list[position]
+        return view
+    }
+
+    override fun getItem(position: Int): Any {
+        return position
+    }
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
+    override fun getCount(): Int {
+        return list.size
+    }
+
+}class AdapterPopUpAdd(val context: Context, val list: List<String>) : BaseAdapter() {
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+        val view: View =
+            LayoutInflater.from(context).inflate(R.layout.adapter_vie_popup_list, parent, false)
+        val text = view.findViewById<TextView>(R.id.textView_popUp)
+        text.hint = list[position]
         return view
     }
 

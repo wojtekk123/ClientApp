@@ -4,4 +4,16 @@
     <string name="password">Password</string>
     <string name="email">Email</string>
     <string name="username">Username</string>
+
+
+    <string-array name="list_student_variable">
+        <item>first name</item>
+        <item>second name</item>
+        <item>email</item>
+        <item>phone number</item>
+        <item>school id</item>
+        <item>start data</item>
+        <item>end data</item>
+    </string-array>
+
 </resources>
