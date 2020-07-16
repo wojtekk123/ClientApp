@@ -3,6 +3,7 @@ package pl.e2d.clientapp.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.et_password
@@ -11,8 +12,8 @@ import pl.e2d.clientapp.R
 import pl.e2d.clientapp.api.ApiInterface
 import pl.e2d.clientapp.singletons.ServiceBuilder
 import pl.e2d.clientapp.singletons.TokenAccess
-import pl.e2d.clientapp.model.Response
-import pl.e2d.clientapp.model.SignInBody
+import pl.e2d.clientapp.dto.ResponseDto
+import pl.e2d.clientapp.dto.SignInBodyDto
 import retrofit2.Call
 import retrofit2.Callback
 
@@ -26,11 +27,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val buttonSubmit = findViewById<Button>(R.id.btn_submit)
         btn_sign_up.setOnClickListener {
             startActivity(Intent(this@MainActivity,RegistrationActivity::class.java))
+            finish()
         }
 
-        btn_submit.setOnClickListener{
+        buttonSubmit.setOnClickListener{
+
 
             val login = et_user_name.text.toString().trim()
             val password = et_password.text.toString().trim()
@@ -48,24 +52,23 @@ class MainActivity : AppCompatActivity() {
 
 
             val request = ServiceBuilder.getRetrofitInstance(BASE_URL).create(ApiInterface::class.java)
-             request.signIn(SignInBody(login,password)).enqueue(object: Callback<Response>{
-                    override fun onFailure(call: Call<Response>, t: Throwable) {
+             request.signIn(SignInBodyDto(login,password)).enqueue(object: Callback<ResponseDto>{
+                    override fun onFailure(call: Call<ResponseDto>, t: Throwable) {
                         Toast.makeText(applicationContext,t.message,Toast.LENGTH_LONG).show()
                     }
 
-                    override fun onResponse(call: Call<Response>, response: retrofit2.Response<Response>) {
-                        if (response.code() == 200) {
+                    override fun onResponse(call: Call<ResponseDto>, responseDto: retrofit2.Response<ResponseDto>) {
+                        if (responseDto.code() == 200) {
                             Toast.makeText(this@MainActivity, "Login success!", Toast.LENGTH_SHORT).show()
-                            TokenAccess.token = response.body()?.token
+                            TokenAccess.token = responseDto.body()?.token
                             startActivity(Intent(this@MainActivity,PanelActivity::class.java))
+                            finish()
 
                         } else {
                             Toast.makeText(this@MainActivity, "Login failed!", Toast.LENGTH_SHORT).show()
                         }
                     }
              })
-
-
 
         }
     }

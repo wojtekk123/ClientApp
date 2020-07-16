@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import pl.e2d.clientapp.R
-import pl.e2d.clientapp.model.masterDataEntity.Student
+import pl.e2d.clientapp.model.Student
 
 class ListAdapter(val context: Context, val list: List<Student>) : BaseAdapter() {
     override fun getView(position: Int, currentView: View?, parent: ViewGroup?): View {
@@ -19,8 +19,8 @@ class ListAdapter(val context: Context, val list: List<Student>) : BaseAdapter()
         val secondName = view.findViewById<TextView>(R.id.textView_secondName)
 
         id.text = position.toString()
-        name.text = list[position].user.firstName
-        secondName.text = list[position].user.secondName
+        name.text = list[position].user?.firstName
+        secondName.text = list[position].user?.secondName
         return view
     }
 
@@ -37,11 +37,10 @@ class ListAdapter(val context: Context, val list: List<Student>) : BaseAdapter()
     }
 }
 
-class AdapterPopUpList(val context: Context, val list: List<String>) : BaseAdapter() {
+class AdapterPopUpList(val context: Context, val list: List<String?>) : BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val view: View =
-            LayoutInflater.from(context).inflate(R.layout.adapter_vie_popup_list, parent, false)
-        val text = view.findViewById<TextView>(R.id.textView_popUp)
+        val view: View = LayoutInflater.from(context).inflate(R.layout.adapter_vie_popup_list, parent, false)
+        val text = view.findViewById<TextView>(R.id.textView_adapter_list)
         text.text = list[position]
         return view
     }
@@ -60,9 +59,8 @@ class AdapterPopUpList(val context: Context, val list: List<String>) : BaseAdapt
 
 }class AdapterPopUpAdd(val context: Context, val list: List<String>) : BaseAdapter() {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val view: View =
-            LayoutInflater.from(context).inflate(R.layout.adapter_vie_popup_list, parent, false)
-        val text = view.findViewById<TextView>(R.id.textView_popUp)
+        val view: View = LayoutInflater.from(context).inflate(R.layout.adapter_vie_popup_list, parent, false)
+        val text = view.findViewById(R.id.textView_adapter_list) as TextView
         text.hint = list[position]
         return view
     }

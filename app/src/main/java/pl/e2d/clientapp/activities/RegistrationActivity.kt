@@ -1,7 +1,5 @@
 package pl.e2d.clientapp.activities
 
-import android.app.ProgressDialog
-import android.os.AsyncTask
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -9,16 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.user_registration.*
 import kotlinx.android.synthetic.main.user_registration.et_password
 import kotlinx.android.synthetic.main.user_registration.et_user_name
-import org.json.JSONArray
 import pl.e2d.clientapp.R
 import pl.e2d.clientapp.api.ApiInterface
 import pl.e2d.clientapp.singletons.ServiceBuilder
 import pl.e2d.clientapp.singletons.TokenAccess
-import pl.e2d.clientapp.model.SingUpBody
+import pl.e2d.clientapp.dto.SingUpBodyDto
 import retrofit2.Call
 import retrofit2.Callback
-import java.net.HttpURLConnection
-import java.net.URL
 
 
 class RegistrationActivity : AppCompatActivity() {
@@ -78,13 +73,13 @@ class RegistrationActivity : AppCompatActivity() {
             } else {
 
                 val request = ServiceBuilder.getRetrofitInstance(BASE_URL).create(ApiInterface::class.java)
-                request.signUp(SingUpBody(login, password, role), "Bearer "+ TokenAccess.getMyStringData())
-                    .enqueue(object : Callback<SingUpBody> {
-                        override fun onFailure(call: Call<SingUpBody>, t: Throwable) {
+                request.signUp(SingUpBodyDto(login, password, role), "Bearer "+ TokenAccess.getMyStringData())
+                    .enqueue(object : Callback<SingUpBodyDto> {
+                        override fun onFailure(call: Call<SingUpBodyDto>, t: Throwable) {
                             Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
                         }
 
-                        override fun onResponse(call: Call<SingUpBody>, response: retrofit2.Response<SingUpBody>) {
+                        override fun onResponse(call: Call<SingUpBodyDto>, response: retrofit2.Response<SingUpBodyDto>) {
                             if (response.code() == 200) {
                                 Toast.makeText(this@RegistrationActivity,"Registered success!", Toast.LENGTH_SHORT).show()
                             } else {
