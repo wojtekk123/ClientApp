@@ -1,48 +1,55 @@
 package pl.e2d.clientapp.activities
 
 import android.content.DialogInterface
+import android.os.Build
 import android.os.Bundle
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.studnet_panel.*
 import pl.e2d.clientapp.R
 import pl.e2d.clientapp.adapter.AdapterPopUpAdd
-import pl.e2d.clientapp.adapter.ListAdapter
 import pl.e2d.clientapp.adapter.AdapterPopUpList
+import pl.e2d.clientapp.adapter.ListAdapter
 import pl.e2d.clientapp.api.StudentInterface
-import pl.e2d.clientapp.model.Student
 import pl.e2d.clientapp.dto.masterDataEntity.StudentDto
 import pl.e2d.clientapp.mapper.mapToDto
+import pl.e2d.clientapp.mapper.mapToModel
+import pl.e2d.clientapp.model.Student
 import pl.e2d.clientapp.parser.ParserMaster
 import pl.e2d.clientapp.retrofit.StudentRequestRetrofit
 import pl.e2d.clientapp.singletons.ServiceBuilder
 import pl.e2d.clientapp.singletons.TokenAccess
 import retrofit2.Call
 import retrofit2.Callback
-import java.lang.IllegalArgumentException
+import retrofit2.Response
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.*
+import java.util.stream.Collectors
+import kotlin.collections.ArrayList
 
 
 class StudentPanel : AppCompatActivity() {
 
     private val BASE_URL: String = "http://192.168.1.150:8080"
-    private var listOfStudents:ArrayList<Student> = ArrayList()
     companion object {
-        var newStudent = Student()
+        private var newStudent = Student()
+        private var listOfStudents:MutableList<Student> = ArrayList()
+
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.studnet_panel)
 
-
         val allStudentButton = findViewById<Button>(R.id.getAllButton_panel)
         val addStudentButton = findViewById<Button>(R.id.addStudentButton_panel)
-
-
-
 
         addStudentButton.setOnClickListener {
 
@@ -87,43 +94,17 @@ class StudentPanel : AppCompatActivity() {
             }
         }
 
-
-
         allStudentButton.setOnClickListener {
 
-            if (TokenAccess.getMyStringData().equals(null)) {
-                Toast.makeText(this@StudentPanel, "Lack of token!", Toast.LENGTH_SHORT)
-                    .show()
-            } else {
-                val request = ServiceBuilder.getRetrofitInstance(BASE_URL).create(StudentInterface::class.java)
-                val call = request.getAllStudent("Bearer " + TokenAccess.getMyStringData())
+            val studentList: List<StudentDto>? = StudentRequestRetrofit().getAllStudent(this@StudentPanel)
 
-                call.enqueue(object : Callback<List<StudentDto>> {
-                    override fun onFailure(call: Call<List<StudentDto>>, t: Throwable) {
-                        Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
-                    }
-
-                    override fun onResponse(
-                        call: Call<List<StudentDto>>,
-                        response: retrofit2.Response<List<StudentDto>>
-                    ) {
-
-                        if (response.code() == 200) {
-                            Toast.makeText(this@StudentPanel, "Login success!", Toast.LENGTH_SHORT)
-                                .show()
-
-                            val json: String = Gson().toJson(response.body())
-                            listOfStudents = ParserMaster().jsonStudentResult(json)
-                            val adapter = ListAdapter(this@StudentPanel, listOfStudents)
-                            listView_studentPanel.adapter = adapter
-
-                        } else {
-                            Toast.makeText(this@StudentPanel, "Access denied", Toast.LENGTH_SHORT)
-                                .show()
-                        }
-                    }
-                })
+            if (studentList!= null) {
+                val json: String = Gson().toJson(studentList)
+                listOfStudents =ParserMaster().jsonStudentResult(json).stream().map { e -> mapToModel(e) }.collect(Collectors.toList())
+                val adapter = ListAdapter(this@StudentPanel, listOfStudents)
+                listView_studentPanel.adapter = adapter
             }
+
 
             listView_studentPanel.setOnItemClickListener { parent, views, position, id ->
 
@@ -153,11 +134,7 @@ class StudentPanel : AppCompatActivity() {
                         "SAVE",
                         DialogInterface.OnClickListener { dialog1, which ->
                             setStudentValue(copyStudent, editText.text.toString(), position1)
-                            if (StudentRequestRetrofit().updateStudent(
-                                    this@StudentPanel,
-                                    mapToDto(student)
-                                )
-                            ) {
+                            if (StudentRequestRetrofit().updateStudent(this@StudentPanel, mapToDto(student))) {
                                 itemListView.text = editText.text
                                 student = copyStudent
                                 listOfStudents[position] = student
@@ -177,12 +154,8 @@ class StudentPanel : AppCompatActivity() {
         }
     }
 
-    private fun dialogAcces(
-        dialog: AlertDialog,
-        editText: EditText,
-        position: Int,
-        itemListView: TextView
-    ) {
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun dialogAcces(dialog: AlertDialog, editText: EditText, position: Int, itemListView: TextView) {
         dialog.setTitle("Edit field")
         dialog.setView(editText)
         dialog.setButton(DialogInterface.BUTTON_POSITIVE,
@@ -196,9 +169,8 @@ class StudentPanel : AppCompatActivity() {
         dialog.show()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun setStudentValue (student:Student, value:String, position:Int) {
-
-        val sdf = SimpleDateFormat("yyyy-MM-dd")
 
         when (position){
             0->student.user?.firstName = value
@@ -206,9 +178,20 @@ class StudentPanel : AppCompatActivity() {
             2->student.user?.email =  value
             3->student.user?.phoneNumber = value
             4->student.schoolId = value.toLong()
-            5->student.startEducation = sdf.parse(value)
-            6->student.endEducation = sdf.parse(value)
+            5->student.startEducation =  setStudentDate(value)
+            6->student.endEducation =  setStudentDate(value)
             else -> throw IllegalArgumentException()
         }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun setStudentDate (value:String): LocalDateTime {
+
+        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.GERMAN)
+        val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm")
+        val dateLocalDateTime:LocalDateTime = LocalDateTime.ofInstant(sdf.parse(value).toInstant(), ZoneId.systemDefault())
+        val formattedDate: String = dateLocalDateTime.format(formatter)
+        return LocalDateTime.parse(formattedDate, formatter)
+
     }
 }
