@@ -5,12 +5,8 @@ import androidx.annotation.RequiresApi
 import org.json.JSONArray
 import pl.e2d.clientapp.dto.masterDataEntity.StudentDto
 import pl.e2d.clientapp.dto.masterDataEntity.UserDto
-import pl.e2d.clientapp.dto.scheduler.ReservationDto
 import pl.e2d.clientapp.model.Student
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
 import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 import kotlin.collections.ArrayList
 import java.util.*
 

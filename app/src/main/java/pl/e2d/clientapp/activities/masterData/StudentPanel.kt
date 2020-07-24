@@ -53,19 +53,19 @@ class StudentPanel : AppCompatActivity() {
             val popupWindow = PopupWindow(this)
             val viewListAdd = layoutInflater.inflate(R.layout.popup_student_add, null)
             val context = viewListAdd.context
-            val popupListAdd = viewListAdd.findViewById(R.id.popup_listView_addStudent) as ListView
+            val popupListViewAdd = viewListAdd.findViewById(R.id.popup_listView_addStudent) as ListView
             val confirmButton = viewListAdd.findViewById(R.id.pp_confirm_Student) as Button
             val closeButton = viewListAdd.findViewById(R.id.pp_closeStudent) as Button
             val studentVariable: List<String> = resources.getStringArray(R.array.list_student_variable).toList()
             val adapterPopupAdd = AdapterStudentPopUpAdd(context, studentVariable)
 
             popupWindow.contentView = viewListAdd
-            popupListAdd.adapter = adapterPopupAdd
+            popupListViewAdd.adapter = adapterPopupAdd
             popupWindow.showAsDropDown(addStudentButton_panel)
             popupWindow.setFocusable(true)
             popupWindow.update()
 
-            popupListAdd.setOnItemClickListener { parent, view, position, id ->
+            popupListViewAdd.setOnItemClickListener { parent, view, position, id ->
 
                 val builder = AlertDialog.Builder(this)
                 val itemListView = view.findViewById(R.id.textView_adapter_list) as TextView
@@ -117,7 +117,7 @@ class StudentPanel : AppCompatActivity() {
             listView_studentPanel.setOnItemClickListener { parent, views, position, id ->
 
                 val popupWindow = PopupWindow(this)
-                val view = layoutInflater.inflate(R.layout.popup_student_list, null)
+                val view = layoutInflater.inflate(R.layout.popup_student_list_view, null)
                 val context = view.context
                 val changeButton = view.findViewById<Button>(R.id.pp_change)
                 val deleteButton = view.findViewById<Button>(R.id.pp_delete)

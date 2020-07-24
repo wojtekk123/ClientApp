@@ -1,6 +1,7 @@
 package pl.e2d.clientapp.activities
 
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.basic_activity.*
@@ -21,5 +22,9 @@ class PanelActivity : AppCompatActivity() {
         manageReservation.setOnClickListener {
             startActivity(Intent(this@PanelActivity, ReservationPanel::class.java))
         }
+
+
+
+
     }
 }

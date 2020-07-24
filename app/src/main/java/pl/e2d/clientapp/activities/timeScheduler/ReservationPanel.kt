@@ -2,6 +2,11 @@ package pl.e2d.clientapp.activities.timeScheduler
 
 import android.os.Build
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.Button
+import android.widget.ListView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
@@ -38,7 +43,21 @@ class ReservationPanel : AppCompatActivity()  {
 
             }
         }, this@ReservationPanel)
+
+
+        listView_reservation.setOnItemClickListener( AdapterView.OnItemClickListener(){
+
+        })
+        }
+
+
     }
 }
 
-
+//
+//val viewAdapterReservation =
+//    layoutInflater.inflate(R.layout.adapter_reservation_list, null)
+//val approveButton = viewAdapterReservation.findViewById<Button>(R.id.reservation_approve_button)
+//approveButton.tag = views.tag
+//approveButton.setOnClickListener {
+//    Toast.makeText(views.context, "Success!", Toast.LENGTH_SHORT).show()

@@ -16,7 +16,7 @@
             android:id="@+id/textView_reservation_id"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="8"
+            android:layout_weight="5"
             android:gravity="center"
             android:textSize="10sp"
             tools:ignore="SmallSp"
@@ -25,7 +25,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="20"
+            android:layout_weight="25"
             android:orientation="vertical">
 
             <TextView
@@ -48,7 +48,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="20"
+            android:layout_weight="35"
             android:orientation="vertical">
 
             <TextView
@@ -73,15 +73,15 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="8"
-            android:gravity="center"
+            android:gravity="center_vertical|end"
             android:textSize="10sp"
-            tools:ignore="SmallSp"
-             />
+            tools:ignore="SmallSp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="20"
+            android:layout_weight="25"
+            android:gravity="center_horizontal"
             android:orientation="vertical">
 
             <TextView
@@ -99,6 +99,33 @@
                 android:gravity="center_horizontal|top"
                 android:textSize="10sp"
                 tools:ignore="SmallSp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:layout_weight="8"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/reservation_approve_button"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginBottom="1dp"
+                android:background="#FFFFFF"
+                android:drawableLeft="@drawable/approve_icon"
+                 />
+
+            <Button
+                android:id="@+id/reservation_delete_button"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="1dp"
+                android:background="#FFFFFF"
+                android:drawableLeft="@drawable/delete_icon"
+                 />
         </LinearLayout>
 
     </LinearLayout>
