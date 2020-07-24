@@ -4,6 +4,15 @@
     <string name="password">Password</string>
     <string name="email">Email</string>
     <string name="username">Username</string>
+    <string name="student">Student</string>
+    <string name="instructor">INSTRUCTOR</string>
+    <string name="school">SCHOOL</string>
+    <string name="panel">PANEL</string>
+    <string name="ride_management">RIDE MANAGEMENT</string>
+    <string name="user_management">USER MANAGEMENT</string>
+    <string name="reservation">RESERVATION</string>
+    <string name="ride_scheduler">RIDE SCHEDULER</string>
+    <string name="workday">Workday</string>
 
 
     <string-array name="list_student_variable">

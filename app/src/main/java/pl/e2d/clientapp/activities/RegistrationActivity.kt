@@ -41,8 +41,6 @@ class RegistrationActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 text_view.text = "Role : ${parent?.getItemAtPosition(position).toString()}"
             }
-
-
         }
 
         register.setOnClickListener {
@@ -87,10 +85,7 @@ class RegistrationActivity : AppCompatActivity() {
                             }
                         }
                     })
-
             }
         }
     }
-
-
 }

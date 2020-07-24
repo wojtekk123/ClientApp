@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi
 import org.json.JSONArray
 import pl.e2d.clientapp.dto.masterDataEntity.StudentDto
 import pl.e2d.clientapp.dto.masterDataEntity.UserDto
+import pl.e2d.clientapp.dto.scheduler.ReservationDto
 import pl.e2d.clientapp.model.Student
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
@@ -43,14 +44,13 @@ class ParserMaster {
         return list
     }
     @RequiresApi(Build.VERSION_CODES.O)
-    fun jsonStudentPopUp(student: Student): List<String?> {
+    fun parsToDisplayData(student: Student): List<String?> {
 
         val calendar: Calendar = Calendar.getInstance()
         calendar.time = Date.from(student.startEducation?.atZone(ZoneId.systemDefault())!!.toInstant())
         val startDateLocalTime:String = (calendar as GregorianCalendar).toZonedDateTime().toLocalDate().toString()
         calendar.time = Date.from(student.endEducation?.atZone(ZoneId.systemDefault())!!.toInstant())
         val endDateLocalTime:String = calendar.toZonedDateTime().toLocalDate().toString()
-
 
         return listOf(student.user?.firstName,
                       student.user?.secondName,

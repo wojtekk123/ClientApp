@@ -10,8 +10,8 @@
     >
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_height="121dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,82 +20,107 @@
         <TextView
             android:id="@+id/textView11"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="PANEL"
+            android:text="@string/panel"
             android:textColor="#5478E6"
             android:textSize="36sp"
             android:textStyle="bold" />
 
-        <TableLayout
-            android:layout_width="410dp"
-            android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="@string/user_management"
+            android:textSize="18sp" />
 
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingStart="30dp">
-
-                <Button
-                    android:id="@+id/manageSchool"
-                    style="@style/Widget.AppCompat.Button"
-                    android:layout_width="131dp"
-                    android:layout_height="wrap_content"
-                    android:text="manage" />
-
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="133dp"
-                    android:layout_height="31dp"
-                    android:gravity="center_horizontal"
-                    android:text="School" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingStart="30dp">
-
-                <Button
-                    android:id="@+id/manageInstructor"
-                    style="@style/Widget.AppCompat.Button"
-                    android:layout_width="131dp"
-                    android:layout_height="wrap_content"
-                    android:text="manage" />
-
-                <TextView
-                    android:id="@+id/textView7"
-                    android:layout_width="133dp"
-                    android:layout_height="31dp"
-                    android:gravity="center_horizontal"
-                    android:text="Instructor" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="@+id/buttonManage3"
-                android:layout_height="match_parent"
-                android:paddingStart="30dp">
-
-                <Button
-                    android:id="@+id/manageStudent"
-                    style="@style/Widget.AppCompat.Button"
-                    android:layout_width="131dp"
-                    android:layout_height="wrap_content"
-                    android:text="manage" />
-
-                <TextView
-                    android:id="@+id/textView9"
-                    android:layout_width="133dp"
-                    android:layout_height="31dp"
-                    android:gravity="center_horizontal"
-                    android:text="Student" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </TableLayout>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="79dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/manageStudent"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:background="@android:color/holo_green_dark"
+            android:text="@string/student" />
+
+        <Button
+            android:id="@+id/manageInstructor"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_red_light"
+            android:text="@string/instructor" />
+
+        <Button
+            android:id="@+id/manageSchool"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@android:color/holo_blue_light"
+            android:text="@string/school" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/ride_management"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="111dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:weightSum="100">
+
+        <Button
+            android:id="@+id/manageReservation"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="33"
+            android:background="@android:color/darker_gray"
+
+            android:text="@string/reservation" />
+
+        <Button
+            android:id="@+id/manageRideScheduler"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="33"
+            android:background="@android:color/darker_gray"
+
+            android:text="@string/ride_scheduler" />
+
+        <Button
+            android:id="@+id/manageWorkDay"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="33"
+            android:background="@android:color/darker_gray"
+
+            android:text="@string/workday" />
+
+    </LinearLayout>
+
 </LinearLayout>

@@ -7,5 +7,4 @@ data class StudentDto (@SerializedName("id") var id: Long? = null,
                        @SerializedName("user") var userDto:UserDto? = UserDto(),
                        @SerializedName("schoolId") var schoolId:Long? = null,
                        @SerializedName("startEducation") var startEducation: String? = null,
-                       @SerializedName("endEducation") var endEducation:String? = null
-)
+                       @SerializedName("endEducation") var endEducation:String? = null)

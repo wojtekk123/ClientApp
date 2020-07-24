@@ -24,7 +24,8 @@
         </activity>
         <activity android:name=".activities.RegistrationActivity" />
         <activity android:name=".activities.PanelActivity" />
-        <activity android:name=".activities.StudentPanel" />
+        <activity android:name=".activities.masterData.StudentPanel" />
+        <activity android:name=".activities.timeScheduler.ReservationPanel" />
 
     </application>
 
