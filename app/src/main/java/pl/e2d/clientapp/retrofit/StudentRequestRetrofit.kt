@@ -4,7 +4,7 @@ import android.content.Context
 import android.widget.Toast
 import pl.e2d.clientapp.api.StudentInterface
 import pl.e2d.clientapp.dto.masterDataEntity.StudentDto
-import pl.e2d.clientapp.dto.scheduler.ReservationDto
+import pl.e2d.clientapp.dto.masterDataEntity.UserByIdDto
 import pl.e2d.clientapp.singletons.ServiceBuilder
 import pl.e2d.clientapp.singletons.TokenAccess
 import retrofit2.Call
@@ -14,7 +14,7 @@ interface CallBackAllStudent{
     fun onSuccess(bodyList:MutableList<StudentDto>)
 }
 interface CallBackStudent{
-    fun onSuccess(body:StudentDto?)
+    fun onSuccess(body: UserByIdDto?)
 }
 
 class StudentRequestRetrofit {
@@ -99,6 +99,7 @@ class StudentRequestRetrofit {
                 }
                 override fun onResponse(call: Call<StudentDto>,response: retrofit2.Response<StudentDto>) {
                     if (response.code() == 200) {
+                        flag = true
                         Toast.makeText(context, "Success!", Toast.LENGTH_SHORT).show()
                     } else if (response.code() == 403) {
                         Toast.makeText(context, "Access Denied!", Toast.LENGTH_SHORT).show()
@@ -143,20 +144,20 @@ class StudentRequestRetrofit {
         return flag
     }
 
-    fun getStudent (id: Long, context: Context, callback: CallBackStudent) {
+    fun getStudentById (id: Long, context: Context?, callback: CallBackStudent) {
 
         if (TokenAccess.getMyStringData().equals(null)) {
             Toast.makeText(context, "Lack of token!", Toast.LENGTH_SHORT).show()
 
         } else {
             val request = ServiceBuilder.getRetrofitInstance(BASE_URL).create(StudentInterface::class.java)
-            val call = request.getStudent(id,"Bearer " + TokenAccess.getMyStringData())
+            val call = request.getStudentById(id,"Bearer " + TokenAccess.getMyStringData())
 
-            call.enqueue(object : Callback<StudentDto> {
-                override fun onFailure(call: Call<StudentDto>, t: Throwable) {
+            call.enqueue(object : Callback<UserByIdDto> {
+                override fun onFailure(call: Call<UserByIdDto>, t: Throwable) {
                     Toast.makeText(context, t.message, Toast.LENGTH_LONG).show()
                 }
-                override fun onResponse(call: Call<StudentDto>,response: retrofit2.Response<StudentDto>
+                override fun onResponse(call: Call<UserByIdDto>,response: retrofit2.Response<UserByIdDto>
                 ) {
                     if (response.code() == 200) {
                         callback.onSuccess(response.body())
@@ -172,4 +173,5 @@ class StudentRequestRetrofit {
             })
         }
     }
+
 }

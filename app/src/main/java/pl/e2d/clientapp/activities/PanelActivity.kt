@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.basic_activity.*
 import pl.e2d.clientapp.R
 import pl.e2d.clientapp.activities.masterData.StudentPanel
 import pl.e2d.clientapp.activities.timeScheduler.ReservationPanel
+import pl.e2d.clientapp.activities.timeScheduler.TabFragment.OpenFragment
 
 class PanelActivity : AppCompatActivity() {
 
@@ -20,7 +21,7 @@ class PanelActivity : AppCompatActivity() {
         }
 
         manageReservation.setOnClickListener {
-            startActivity(Intent(this@PanelActivity, ReservationPanel::class.java))
+            startActivity(Intent(this@PanelActivity, OpenFragment::class.java))
         }
 
 

@@ -10,9 +10,6 @@ import retrofit2.http.Path
 
 interface InstructorInterface {
 
-    @Headers("Content-Type:application/json")
-    @GET("/instructor/get/{id}")
-    fun getInstructor(@Path("id") id: Long?, @Header("Authorization")  token: String?): Call<InstructorDto>
 
     @Headers("Content-Type:application/json")
     @GET("/ride/getInstructorById/{id}")

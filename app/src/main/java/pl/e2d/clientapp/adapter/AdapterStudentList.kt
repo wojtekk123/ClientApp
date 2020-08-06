@@ -78,30 +78,3 @@ class AdapterStudentPopUpAdd(val context: Context, val list: List<String>) : Bas
     }
 }
 
-class ListAdapterReservation(val context: Context, val list: List<Student>) : BaseAdapter() {
-    override fun getView(position: Int, currentView: View?, parent: ViewGroup?): View {
-
-        val view: View =
-            LayoutInflater.from(context).inflate(R.layout.adapter_vie_layout, parent, false)
-        val id = view.findViewById<TextView>(R.id.textView_id)
-        val name = view.findViewById<TextView>(R.id.textView_name)
-        val secondName = view.findViewById<TextView>(R.id.textView_secondName)
-
-        id.text = position.toString()
-        name.text = list[position].user?.firstName
-        secondName.text = list[position].user?.secondName
-        return view
-    }
-
-    override fun getItem(position: Int): Any {
-        return position
-    }
-
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
-
-    override fun getCount(): Int {
-        return list.size
-    }
-}

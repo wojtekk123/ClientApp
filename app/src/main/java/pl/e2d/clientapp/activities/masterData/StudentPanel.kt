@@ -62,7 +62,7 @@ class StudentPanel : AppCompatActivity() {
             popupWindow.contentView = viewListAdd
             popupListViewAdd.adapter = adapterPopupAdd
             popupWindow.showAsDropDown(addStudentButton_panel)
-            popupWindow.setFocusable(true)
+            popupWindow.isFocusable = true
             popupWindow.update()
 
             popupListViewAdd.setOnItemClickListener { parent, view, position, id ->

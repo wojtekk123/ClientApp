@@ -18,7 +18,7 @@ class InstructorRequestRetrofit {
     private val BASE_URL: String = "http://192.168.1.150:8080"
 
 
-    fun getInstructorById (id: Long, context: Context, callback: CallBackInstructorById) {
+    fun getInstructorById (id: Long, context: Context?, callback: CallBackInstructorById) {
 
         if (TokenAccess.getMyStringData().equals(null)) {
             Toast.makeText(context, "Lack of token!", Toast.LENGTH_SHORT).show()
