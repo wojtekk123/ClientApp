@@ -17,4 +17,8 @@ interface ReservationInterface {
     @Headers("Content-Type:application/json")
     @PATCH("/reservation/approve/{id}")
     fun approveReservation (@Path("id") id: Long? ,@Header("Authorization")  token: String?): Call<ReservationDto>
+
+    @Headers("Content-Type:application/json")
+    @PATCH("/reservation/decline/{id}")
+    fun declineReservation (@Path("id") id: Long? ,@Header("Authorization")  token: String?): Call<ReservationDto>
 }

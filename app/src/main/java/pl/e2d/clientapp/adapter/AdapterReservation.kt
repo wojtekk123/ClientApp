@@ -33,6 +33,8 @@ class AdapterReservation(private val reservationList: MutableList<Reservation>) 
     }
 
 
+
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ExampleViewHolder, position: Int) {
         val calendar: Calendar = Calendar.getInstance()
@@ -77,14 +79,13 @@ class AdapterReservation(private val reservationList: MutableList<Reservation>) 
 
             })
 
-
         holder.deleteButton.setOnClickListener {
             val builder = AlertDialog.Builder(tempContext!!)
             builder.setTitle("Are you sure you want to delete this reservation?")
             builder.setPositiveButton("YES") { dialog, which ->
                 if (ReservationRequestRetrofit().deleteReservation(tempContext!!, reservationList[position].id)) {
                     reservationList.removeAt(position)
-                    notifyDataSetChanged()
+                    notifyItemRemoved(position)
                 }
             }
             builder.setNegativeButton("No") { dialog, which -> }
@@ -92,14 +93,13 @@ class AdapterReservation(private val reservationList: MutableList<Reservation>) 
             dialog.show()
         }
 
-
         holder.approveButton.setOnClickListener {
             val builder = AlertDialog.Builder(tempContext!!)
             builder.setTitle("Are you sure you want to approve this reservation?")
             builder.setPositiveButton("YES") { dialog, which ->
                 if (ReservationRequestRetrofit().approveReservation(tempContext!!, reservationList[position].id)) {
                     reservationList.removeAt(position)
-                    notifyDataSetChanged()
+                    notifyItemRemoved(position)
                 }
             }
             builder.setNegativeButton("No") { dialog, which -> }

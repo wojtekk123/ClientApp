@@ -115,5 +115,36 @@ class ReservationRequestRetrofit {
         }
         return flag
     }
+
+    fun declineReservation ( context: Context, id:Long? ) : Boolean {
+        flag = false
+
+        if (TokenAccess.getMyStringData().equals(null)) {
+            Toast.makeText(context, "Lack of token!", Toast.LENGTH_SHORT).show()
+        } else {
+            val request = ServiceBuilder.getRetrofitInstance(BASE_URL).create(ReservationInterface::class.java)
+            val call = request.declineReservation(id,"Bearer " + TokenAccess.getMyStringData())
+
+            call.enqueue(object : Callback<ReservationDto> {
+                override fun onFailure(call: Call<ReservationDto>, t: Throwable) {
+                    Toast.makeText(context, t.message, Toast.LENGTH_LONG).show()
+                }
+                override fun onResponse(call: Call<ReservationDto>, response: retrofit2.Response<ReservationDto>) {
+                    if (response.code() == 200) {
+                        Toast.makeText(context, "Success!", Toast.LENGTH_SHORT).show()
+                        flag = true
+                    } else if (response.code() == 403) {
+                        Toast.makeText(context, "Access Denied!", Toast.LENGTH_SHORT).show()
+                    } else if (response.code() == 404) {
+                        Toast.makeText(context, "Resource doesn't exist!", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(context, "Something wrong!", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            })
+        }
+        return flag
+    }
+
 }
 

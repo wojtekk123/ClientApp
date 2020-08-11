@@ -18,7 +18,7 @@ import retrofit2.Call
 import retrofit2.Callback
 
 
-class MainActivity : AppCompatActivity() {
+class LoginPanelActivity : AppCompatActivity() {
 
     private val BASE_URL:String = "http://192.168.1.150:8081"
 
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         val buttonSubmit = findViewById<Button>(R.id.btn_submit)
         btn_sign_up.setOnClickListener {
-            startActivity(Intent(this@MainActivity,RegistrationActivity::class.java))
+            startActivity(Intent(this@LoginPanelActivity,RegistrationActivity::class.java))
             finish()
         }
 
@@ -59,13 +59,13 @@ class MainActivity : AppCompatActivity() {
 
                     override fun onResponse(call: Call<ResponseDto>, responseDto: retrofit2.Response<ResponseDto>) {
                         if (responseDto.code() == 200) {
-                            Toast.makeText(this@MainActivity, "Login success!", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@LoginPanelActivity, "Login success!", Toast.LENGTH_SHORT).show()
                             TokenAccess.token = responseDto.body()?.token
-                            startActivity(Intent(this@MainActivity,PanelActivity::class.java))
+                            startActivity(Intent(this@LoginPanelActivity,MainPanelActivity::class.java))
                             finish()
 
                         } else {
-                            Toast.makeText(this@MainActivity, "Login failed!", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@LoginPanelActivity, "Login failed!", Toast.LENGTH_SHORT).show()
                         }
                     }
              })
